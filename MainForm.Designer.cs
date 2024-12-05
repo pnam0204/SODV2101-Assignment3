@@ -29,11 +29,13 @@
         private void InitializeComponent()
         {
             lstPlayer = new ListBox();
-            lstPlayerStats = new ListBox();
             panel1 = new Panel();
-            label1 = new Label();
+            flpCard = new FlowLayoutPanel();
+            cardFormat1 = new CardFormat();
             label2 = new Label();
+            label1 = new Label();
             panel1.SuspendLayout();
+            flpCard.SuspendLayout();
             SuspendLayout();
             // 
             // lstPlayer
@@ -41,38 +43,39 @@
             lstPlayer.FormattingEnabled = true;
             lstPlayer.Location = new Point(3, 43);
             lstPlayer.Name = "lstPlayer";
-            lstPlayer.Size = new Size(150, 324);
+            lstPlayer.Size = new Size(150, 304);
             lstPlayer.TabIndex = 0;
             lstPlayer.SelectedIndexChanged += lstPlayer_SelectedIndexChanged;
             // 
-            // lstPlayerStats
-            // 
-            lstPlayerStats.FormattingEnabled = true;
-            lstPlayerStats.Location = new Point(191, 43);
-            lstPlayerStats.Name = "lstPlayerStats";
-            lstPlayerStats.Size = new Size(408, 324);
-            lstPlayerStats.TabIndex = 1;
-            // 
             // panel1
             // 
+            panel1.Controls.Add(flpCard);
             panel1.Controls.Add(label2);
             panel1.Controls.Add(label1);
             panel1.Controls.Add(lstPlayer);
-            panel1.Controls.Add(lstPlayerStats);
-            panel1.Location = new Point(108, 43);
+            panel1.Location = new Point(25, 47);
             panel1.Name = "panel1";
-            panel1.Size = new Size(602, 379);
+            panel1.Size = new Size(415, 353);
             panel1.TabIndex = 2;
             // 
-            // label1
+            // flpCard
             // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label1.Location = new Point(3, 12);
-            label1.Name = "label1";
-            label1.Size = new Size(77, 28);
-            label1.TabIndex = 2;
-            label1.Text = "Players:";
+            flpCard.AutoSize = true;
+            flpCard.Controls.Add(cardFormat1);
+            flpCard.Location = new Point(191, 43);
+            flpCard.Name = "flpCard";
+            flpCard.Size = new Size(207, 307);
+            flpCard.TabIndex = 4;
+            // 
+            // cardFormat1
+            // 
+            cardFormat1.BackColor = SystemColors.ActiveCaption;
+            cardFormat1.BorderStyle = BorderStyle.FixedSingle;
+            cardFormat1.Location = new Point(3, 3);
+            cardFormat1.Name = "cardFormat1";
+            cardFormat1.Size = new Size(200, 300);
+            cardFormat1.TabIndex = 0;
+            cardFormat1.Click += Card_Click;
             // 
             // label2
             // 
@@ -84,25 +87,37 @@
             label2.TabIndex = 3;
             label2.Text = "Stats:";
             // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label1.Location = new Point(3, 12);
+            label1.Name = "label1";
+            label1.Size = new Size(77, 28);
+            label1.TabIndex = 2;
+            label1.Text = "Players:";
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(482, 453);
             Controls.Add(panel1);
             Name = "MainForm";
             Text = "Trading Cards";
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
+            flpCard.ResumeLayout(false);
             ResumeLayout(false);
         }
 
         #endregion
 
         private ListBox lstPlayer;
-        private ListBox lstPlayerStats;
         private Panel panel1;
         private Label label1;
         private Label label2;
+        private FlowLayoutPanel flpCard;
+        private CardFormat cardFormat1;
     }
 }

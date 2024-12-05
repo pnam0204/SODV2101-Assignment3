@@ -5,17 +5,19 @@ namespace Assignment3
         string filePath = @"NHL Player Stats 2017-18.csv";
         string player = "";
         List<PlayerStats> list = new List<PlayerStats>();
+        CardFormat card;
+        CardFormat cardBack;
         public MainForm()
         {
             InitializeComponent();
-            GlobalData.centerControl(panel1);
+            GlobalData.adjustLayout(panel1);
             GlobalData.LoadCSV(filePath, GlobalData.PlayerList, input => new PlayerStats(input));
             PopulatePlayerList();
             DisplayPlayerInfo(player);
         }
         private void DisplayPlayerInfo(string player)
         {
-            lstPlayerStats.Items.Clear();
+            flpCard.Controls.Clear();
             var e = GetPlayer(player);
             if (e == null)
             {
@@ -23,27 +25,19 @@ namespace Assignment3
                 return;
             }
 
-            List<string> display = new List<string>();
-
             string name = $"Name: {e.Name}";
             string team = $"Team: {e.Team}";
             string pos = $"Position: {e.Pos}";
-            string gp = $"Gameplayed: {e.GP}";
+            string gp = $"Games Played: {e.GP}";
             string g = $"Goals: {e.G}";
             string a = $"Assists: {e.A}";
             string p = $"Points: {e.P}";
-            display.Add(name);
-            display.Add(team);
-            display.Add(pos);
-            display.Add(gp);
-            display.Add(g);
-            display.Add(a);
-            display.Add(p);
 
-            foreach (var item in display)
-            {
-                lstPlayerStats.Items.Add(item);
-            }
+            card = new CardFormat(name, pos, gp, g, a, p);
+            cardBack = new CardFormat(team);
+            card.Click += Card_Click;
+            cardBack.Click += Card_Click;
+            flpCard.Controls.Add(cardBack);
         }
         private PlayerStats GetPlayer(string player)
         {
@@ -66,6 +60,16 @@ namespace Assignment3
                 player = lstPlayer.SelectedItem.ToString();
                 DisplayPlayerInfo(player);
             }
+        }
+        private void Card_Click(object? sender, EventArgs e)
+        {
+            if (sender != null) flpCard.Controls.Clear();
+            else return;
+
+            if (sender == cardBack) flpCard.Controls.Add(card);
+            else flpCard.Controls.Add(cardBack);
+
+            
         }
     }
 }

@@ -56,7 +56,7 @@ namespace Assignment3
                 MessageBox.Show($"Error loading file: {ex.Message}");
             }
         }
-        public static void centerControl(params Control[] e)
+        public static void adjustLayout(params Control[] e)
         {
             foreach (Control c in e)
             {
